@@ -51,4 +51,6 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
         });
     }
 
+    refresh();
+
 }]);
