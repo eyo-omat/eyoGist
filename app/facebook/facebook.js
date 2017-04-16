@@ -82,12 +82,12 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
           'website',
           'work'
           ].join(',');
-        $facebook.api('/me', {fields: fields},  function(response){
+        $facebook.api('/me', {fields: 'irst_name,last_name,email,gender,locale,name,id'},  function(response){
             console.log(response);
             $scope.welcomeMsg = "Welcome "+ response.name;
             $scope.isLoggedIn = true;
             $scope.userInfo = response;
-            $facebook.api('/me/picture', {fields: fields}, function(response){
+            $facebook.api('/me/picture').then(function(response){
                 $scope.picture=response.data.url;
                 $facebook.api('/me/permissions').then(function(response){
                     $scope.permissions=response.data;
