@@ -42,16 +42,56 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
     }
 
     function refresh(){
-        $facebook.api('/me').then(function(response){
+        var fields = [
+          'id',
+          'name',
+          'first_name',
+          'middle_name',
+          'last_name',
+          'gender',
+          'locale',
+          'languages',
+          'link',
+          'username',
+          'third_party_id',
+          'installed',
+          'timezone',
+          'updated_time',
+          'verified',
+          'age_range',
+          'bio',
+          'birthday',
+          'cover',
+          'currency',
+          'devices',
+          'education',
+          'email',
+          'hometown',
+          'interested_in',
+          'location',
+          'political',
+          'payment_pricepoints',
+          'favorite_athletes',
+          'favorite_teams',
+          'picture',
+          'quotes',
+          'relationship_status',
+          'religion',
+          'significant_other',
+          'video_upload_limits',
+          'website',
+          'work'
+          ].join(',');
+        $facebook.api('/me', {fields: fields},  function(response){
             console.log(response);
             $scope.welcomeMsg = "Welcome "+ response.name;
             $scope.isLoggedIn = true;
             $scope.userInfo = response;
-            $facebook.api('/me/picture').then(function(response){
+            $facebook.api('/me/picture', {fields: fields}, function(response){
                 $scope.picture=response.data.url;
                 $facebook.api('/me/permissions').then(function(response){
                     $scope.permissions=response.data;
-                    $facebook.api('/me/posts').then(function(response){
+                    $facebook.api('/me/posts', {fields: fields}, function(response){
                         $scope.posts=response.data;
                     })
                 })
