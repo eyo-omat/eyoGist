@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('eyoApp.acebook', ['ngRoute', 'ng-facebook'])
+angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/facebook', {
