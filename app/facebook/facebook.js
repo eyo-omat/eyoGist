@@ -25,6 +25,12 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
    }(document, 'script', 'facebook-jssdk'));
 })
 
-.controller('facebookController', [function() {
+.controller('facebookController', ['$scope', '$facebook', function($scope, $facebook) {
+    $scope.isLoggedIn = false;
+    $scope.logIn = function(){
+        $facebook.login().then(function(){
+            console.log("Logged In");
+        })
+    }
 
 }]);
