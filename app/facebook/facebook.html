@@ -1,8 +1,11 @@
 <div class="row">
             <div class="col-md-4">
             <h4>{{welcomeMsg}}</h4>
-                <button type="button" class="btn btn-default" ng-click="logIn()" ng-hide="isLoggedIn" >Login</button>
+                <div ng-show="isLoggedIn">
+                    <a href="{{userInfo.link}}" target="_blank"> <img ng-src="{{picture}}"> </a>
+                </div>
                 <br />
+                <button type="button" class="btn btn-default" ng-click="logIn()" ng-hide="isLoggedIn" >Login</button>
                 <br />
                 <button type="button" class="btn btn-default" ng-click="logOut()" ng-show="isLoggedIn" >Logout</button>
                 <br />
@@ -21,7 +24,7 @@
                 <div class="well">
                 <h4>Permissions</h4>
                     <ul>
-                        <li></li>
+                        <li ng-repeat="permission in permissions">{{permission.permission}} - {{permission.status}}</li>
                     </ul>
                 </div>
             </div>

@@ -43,9 +43,16 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
 
     function refresh(){
         $facebook.api('/me').then(function(response){
+            console.log(response);
             $scope.welcomeMsg = "Welcome "+ response.name;
             $scope.isLoggedIn = true;
             $scope.userInfo = response;
+            $facebook.api('/me/picture').then(function(response){
+                $scope.picture=response.data.url;
+                $facebook.api('/me/permissions').then(function(response){
+                    $scope.permissions=response.data;
+                })
+            })
         }, function(error){
             $scope.welcomeMsg = "Please Log In";
         });
