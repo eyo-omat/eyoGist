@@ -8,7 +8,7 @@ angular.module('eyoApp', [
   'eyoApp.facebook'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+  $locationProvider.hashPrefix('');
 
   $routeProvider.otherwise({redirectTo: '/facebook'});
 }]);
