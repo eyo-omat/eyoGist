@@ -7,15 +7,15 @@
                 <button type="button" class="btn btn-default" ng-click="logOut()" ng-show="isLoggedIn" >Logout</button>
                 <br />
                 <br />
-                <div class="well">
+                <div class="well" ng-show="isLoggedIn" >
                     <h4>User Info</h4>
                     <ul>
-                        <li>ID: 34584</li>
-                        <li>First Name: Jake</li>
-                        <li>Last Name: Juice</li>
-                        <li>Email: juice@mail.com</li>
-                        <li>Gender: Male</li>
-                        <li>Locale: GH</li>
+                        <li>ID: {{userInfo.id}}</li>
+                        <li>First Name: {{userInfo.first_name}}</li>
+                        <li>Last Name: {{userInfo.last_name}}</li>
+                        <li>Email: {{userInfo.email}}</li>
+                        <li>Gender: {{userInfo.gender}}</li>
+                        <li>Locale: {{userInfo.locale}}</li>
                     </ul>
                 </div>
                 <div class="well">
