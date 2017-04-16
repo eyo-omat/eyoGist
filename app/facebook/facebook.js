@@ -29,8 +29,26 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
     $scope.isLoggedIn = false;
     $scope.logIn = function(){
         $facebook.login().then(function(){
-            console.log("Logged In");
-        })
+            $scope.isLoggedIn = true;
+            refresh();
+        });
+    }
+
+    $scope.logOut = function(){
+        $facebook.logout().then(function(){
+            $scope.isLoggedIn = false;
+            refresh();
+        });
+    }
+
+    function refresh(){
+        $facebook.api('/me').then(function(reponse){
+            $scope.welcomeMsg = "Welcome "+ response.name;
+            $scope.isLoggedIn = true;
+            $scope.userInfo = response;
+        }, function(error){
+            $scope.welcomeMsg = "Please Log In";
+        });
     }
 
 }]);
