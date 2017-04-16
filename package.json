@@ -17,14 +17,15 @@
     "protractor": "^4.0.9"
   },
   "dependencies": {
-    "bower": "^1.8.0"
+    "bower": "^1.8.0",
+    "http-server": "*"
   },
   "scripts": {
     "postinstall": "bower install",
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p process.env.PORT -c-1 ./app",
+    "start": "http-server ./ -p ${PORT:=8000} -c-1 ./app",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",

@@ -11,6 +11,5 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   $locationProvider.hashPrefix('');
 
   $routeProvider.otherwise({redirectTo: '/facebook'});
-}]).
+}]);
 
-listen(process.env.PORT || 4400);
