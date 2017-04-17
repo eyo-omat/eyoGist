@@ -14,9 +14,9 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
     $facebookProvider.setPermissions("email, public_profile, user_posts, publish_actions, user_photos");
     $facebookProvider.setVersion('v2.4');
     $facebookProvider.setCustomInit({
-       xfbml      : true,
+        xfbml: true,
         cookie: true
-     });
+    });
     //$facebookProvider.setCookie(true);
 })
 
@@ -91,31 +91,33 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
           'website',
           'work'
           ].join(',');
-        $facebook.api('/me?fields=id,name,first_name,last_name,email,gender,locale').then(function (response) {
+        $facebook.api('/me', {
+            fields: fields
+        }).then(function (response) {
             console.log('response');
             console.log(response);
             $scope.welcomeMsg = "Welcome " + response.name;
             $scope.isLoggedIn = true;
             $scope.userInfo = response;
+            $facebook.api('/me/picture').then(function (response) {
+                console.log("picture response");
+                console.log(response);
+                $scope.picture = response.data.url;
+                $facebook.api('/me/permissions').then(function (response) {
+                    console.log('permissions response');
+                    console.log(response);
+                    $scope.permissions = response.data;
+                    $facebook.api('/me/posts', {
+                        fields: fields
+                    }, function (response) {
+                        $scope.posts = response.data;
+                    });
+                });
+            });
         }, function (error) {
             $scope.welcomeMsg = "Please Log In";
         });
 
-        $facebook.api('/me/picture').then(function (response) {
-            console.log("picture response");
-            console.log(response);
-            $scope.picture = response.data.url;
-            $facebook.api('/me/permissions').then(function (response) {
-                console.log('permissions response');
-                console.log(response);
-                $scope.permissions = response.data;
-                $facebook.api('/me/posts', {
-                    fields: fields
-                }, function (response) {
-                    $scope.posts = response.data;
-                });
-            });
-        });
     }
 
     refresh();
