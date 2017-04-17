@@ -12,7 +12,7 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
 .config(function ($facebookProvider) {
     $facebookProvider.setAppId('126685577873363');
     $facebookProvider.setPermissions("email, public_profile, user_posts, publish_actions, user_photos");
-    $facebookProvider.setVersion('v2.5');
+    $facebookProvider.setVersion('v2.4');
     $facebookProvider.setCustomInit({
        xfbml      : true,
         cookie: true
@@ -20,16 +20,7 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
     //$facebookProvider.setCookie(true);
 })
 
-.run(function ($rootScope, $window) {
-    $window.fbAsyncInit = function() {
-    FB.init({
-      appId: '126685577873363',
-      status: true,
-      cookie: true,
-      xfbml: true,
-      version: 'v2.4'
-    });
-};
+.run(function ($rootScope) {
 
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
