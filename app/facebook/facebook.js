@@ -12,6 +12,8 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
 .config(function ($facebookProvider) {
     $facebookProvider.setAppId('126685577873363');
     $facebookProvider.setPermissions("email, public_profile, user_posts, publish_actions, user_photos");
+    $facebookProvider.setVersion('v2.8');
+    $facebookProvider.setCookie(true);
 })
 
 .run(function ($rootScope) {
