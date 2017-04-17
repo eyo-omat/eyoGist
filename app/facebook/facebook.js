@@ -20,7 +20,7 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
     //$facebookProvider.setCookie(true);
 })
 
-.run(function ($rootScope) {
+.run(function ($rootScope, $window) {
     $window.fbAsyncInit = function() {
     FB.init({
       appId: '126685577873363',
