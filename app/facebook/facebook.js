@@ -67,7 +67,6 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
           'updated_time',
           'verified',
           'age_range',
-          'bio',
           'birthday',
           'cover',
           'currency',
