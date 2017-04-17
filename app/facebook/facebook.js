@@ -107,14 +107,16 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
                     console.log('permissions response');
                     console.log(response);
                     $scope.permissions = response.data;
-                    $facebook.api('/me/posts', {
-                        fields: fields
-                    }, function (response) {
+                    $facebook.api('/me/posts').then(function (response) {
+                        console.log('posts response');
+                        console.log(response);
                         $scope.posts = response.data;
                     });
                 });
             });
         }, function (error) {
+            console.log('Error');
+            console.log(error);
             $scope.welcomeMsg = "Please Log In";
         });
 
