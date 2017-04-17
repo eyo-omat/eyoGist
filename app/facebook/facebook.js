@@ -61,7 +61,6 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
           'locale',
           'languages',
           'link',
-          'username',
           'third_party_id',
           'installed',
           'timezone',
