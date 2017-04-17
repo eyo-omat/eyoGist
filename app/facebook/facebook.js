@@ -95,8 +95,12 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
         });
 
         $facebook.api('/me/picture').then(function (response) {
+            console.log("picture response");
+            console.log(response);
             $scope.picture = response.data.url;
             $facebook.api('/me/permissions').then(function (response) {
+                console.log('permissions response');
+                console.log(response);
                 $scope.permissions = response.data;
                 $facebook.api('/me/posts', {
                     fields: fields
