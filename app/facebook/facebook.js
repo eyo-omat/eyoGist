@@ -91,7 +91,7 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
           'website',
           'work'
           ].join(',');
-        $facebook.api('/me?fields=id,name,first_name,last_name,email,gender,locale', function (response) {
+        $facebook.api('/me?fields=id,name,first_name,last_name,email,gender,locale').then(function (response) {
             console.log('response');
             console.log(response);
             $scope.welcomeMsg = "Welcome " + response.name;
