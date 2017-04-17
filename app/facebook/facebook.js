@@ -115,6 +115,8 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
                 });
             });
         }, function (error) {
+            console.log('Error');
+            console.log(error);
             $scope.welcomeMsg = "Please Log In";
         });
 
