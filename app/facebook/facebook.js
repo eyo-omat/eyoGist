@@ -85,7 +85,8 @@ angular.module('eyoApp.facebook', ['ngRoute', 'ngFacebook'])
           'website',
           'work'
           ].join(',');
-        $facebook.api('/me?fields='+fields, function (response) {
+        $facebook.api('/me?fields=id,name,first_name,last_name,email,gender,locale', function (response) {
+            console.log('response');
             console.log(response);
             $scope.welcomeMsg = "Welcome " + response.name;
             $scope.isLoggedIn = true;
