@@ -1,51 +1,57 @@
 <div class="row">
-            <div class="col-md-4">
-            <h4>{{welcomeMsg}}</h4>
-                <div ng-show="isLoggedIn">
-                    <a href="{{userInfo.link}}" target="_blank"> <img ng-src="{{picture}}"> </a>
+    <div class="col-md-4">
+        <h4>{{welcomeMsg}}</h4>
+        <div ng-show="isLoggedIn">
+            <a href="{{userInfo.link}}" target="_blank"> <img ng-src="{{picture}}"> </a>
+        </div>
+        <br />
+        <button type="button" class="btn btn-default" ng-click="logIn()" ng-hide="isLoggedIn">Login</button>
+        <br />
+        <button type="button" class="btn btn-default" ng-click="logOut()" ng-show="isLoggedIn">Logout</button>
+        <br />
+        <br />
+        <div class="well" ng-show="isLoggedIn">
+            <h4>User Info</h4>
+            <ul>
+                <li>ID: {{userInfo.id}}</li>
+                <li>First Name: {{userInfo.first_name}}</li>
+                <li>Last Name: {{userInfo.last_name}}</li>
+                <li>Email: {{userInfo.email}}</li>
+                <li>Gender: {{userInfo.gender}}</li>
+                <li>Locale: {{userInfo.locale}}</li>
+            </ul>
+        </div>
+        <div class="well" ng-show="isLoggedIn">
+            <h4>Permissions</h4>
+            <ul>
+                <li ng-repeat="permission in permissions">{{permission.permission}} - {{permission.status}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h3>Welcome to Facebook</h3>
+        <div ng-show="isLoggedIn">
+            <form ng-submit="postStatus()">
+                <div class="form-group">
+                    <label>Status update</label>
+                    <textarea class="form-control" ng-model="body"></textarea>
                 </div>
-                <br />
-                <button type="button" class="btn btn-default" ng-click="logIn()" ng-hide="isLoggedIn" >Login</button>
-                <br />
-                <button type="button" class="btn btn-default" ng-click="logOut()" ng-show="isLoggedIn" >Logout</button>
-                <br />
-                <br />
-                <div class="well" ng-show="isLoggedIn" >
-                    <h4>User Info</h4>
-                    <ul>
-                        <li>ID: {{userInfo.id}}</li>
-                        <li>First Name: {{userInfo.first_name}}</li>
-                        <li>Last Name: {{userInfo.last_name}}</li>
-                        <li>Email: {{userInfo.email}}</li>
-                        <li>Gender: {{userInfo.gender}}</li>
-                        <li>Locale: {{userInfo.locale}}</li>
-                    </ul>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <br/>
+            <br/>
+            <div ng-repeat="post in posts" class="stbody">
+                <div class="stimg">
+                    <img ng-src="{{picture}}">
                 </div>
-                <div class="well">
-                <h4>Permissions</h4>
-                    <ul>
-                        <li ng-repeat="permission in permissions">{{permission.permission}} - {{permission.status}}</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-8">
-            <h3>Welcome to Facebook</h3>
-                <form>
-                    <div class="form-group">
-                        <label>Status update</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-                <br/><br/>
-                <div ng-repeat="post in posts" class="stbody">
-                    <div class="stimg">
-                        <img ng-src="{{picture}}">
-                    </div>
-                    <div class="sttext">
-                        {{post.messgae}}
-                        <div class="sttime">{{post.updated_time}}</div>
-                    </div>
+                <div class="sttext">
+                    {{post.story}}
+                    <div class="sttime">{{post.created_time}}</div>
                 </div>
             </div>
         </div>
+        <div ng-hide="isLoggedIn">
+            <p>You need to log in to post</p>
+        </div>
+    </div>
+</div>
